@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const Cards = ({ searchQuery, selectedFilter }) => {
   const [cardsData, setCardsData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null); // Store selected card's details
+  const [selectedCard, setSelectedCard] = useState(null);
 
   // Fetch Data Based on Filter
   useEffect(() => {
@@ -47,7 +47,7 @@ const Cards = ({ searchQuery, selectedFilter }) => {
         `https://pokeapi.co/api/v2/pokemon/${cardName}`
       );
       const data = await response.json();
-      setSelectedCard(data); // Set the details of the clicked card
+      setSelectedCard(data);
     } catch (error) {
       console.error("Error fetching card details:", error);
     }
@@ -63,7 +63,7 @@ const Cards = ({ searchQuery, selectedFilter }) => {
             <div
               key={index}
               className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
-              onClick={() => handleCardClick(card.name)} // Handle card click
+              onClick={() => handleCardClick(card.name)}
             >
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
@@ -86,7 +86,6 @@ const Cards = ({ searchQuery, selectedFilter }) => {
         )}
       </div>
 
-      {/* Display selected card details */}
       {selectedCard && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-20">
           <div className="bg-white p-6 rounded-lg w-96 shadow-lg">
@@ -104,7 +103,7 @@ const Cards = ({ searchQuery, selectedFilter }) => {
               <p>Base Experience: {selectedCard.base_experience}</p>
             </div>
             <button
-              onClick={() => setSelectedCard(null)} // Close the details view
+              onClick={() => setSelectedCard(null)}
               className="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-all"
             >
               Close
